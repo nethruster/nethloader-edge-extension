@@ -4,6 +4,12 @@
   "author": "Nethruster",
   "version": "1.0.0",
   "manifest_version": 2,
+  "browser_specific_settings": {
+    "edge": {
+        "browser_action_next_to_addressbar": true
+      }
+  },
+  
   "background": {
         "page": "contextMenu.html",
         "persistent": false
