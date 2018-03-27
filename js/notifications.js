@@ -6,6 +6,7 @@ export default class Notifications {
     this.notificationCount = 0
     this.activeClassName = 'active'
     this.timeOut = null
+    this.timeOutTime = 5000
 
     this.closeButton.addEventListener('click', this.removeNotification.bind(this))
   }
@@ -21,7 +22,7 @@ export default class Notifications {
     if (this.timeOut) {
       clearTimeout(this.timeOut)
     }
-    this.timeOut = setTimeout(this.removeNotification.bind(this), 5000);
+    this.timeOut = setTimeout(this.removeNotification.bind(this), this.timeOutTime);
   }
 
   removeNotification() {
