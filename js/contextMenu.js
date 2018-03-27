@@ -25,11 +25,15 @@ chrome.contextMenus.onClicked.addListener(async data => {
     .then(resp => resp.json())
     .then(result => {
       sendToClipBoard(result.data.link)
+      browser.tabs.create({
+        active: true,
+        url: result.data.link
+      })
       return result
     })
-    .then(result => {
-      spawnNotification("Media uploaded", "The link has been copied to your clipboard.", "image", result.data.thumb, generateNotificationClickHandler(result.data.link), 5000)
-    })
+    // .then(result => {
+    //   spawnNotification("Media uploaded", "The link has been copied to your clipboard.", "image", result.data.thumb, generateNotificationClickHandler(result.data.link), 5000)
+    // })
     .catch(err => {
       spawnNotification("Error while uploding", "The image cloud not be uplouded.", "basic", null, null, 5000)
       console.error(err)

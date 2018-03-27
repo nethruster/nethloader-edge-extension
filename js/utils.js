@@ -68,14 +68,16 @@ export function spawnNotification(title, body, type, imageUrl, onClickHandler, t
       setTimeout(() => {chrome.notifications.clear(notifactionId)}, tiemout)
     }
   })
-  
 }
+
 export function generateNotificationClickHandler(url) {
   return (notifactionId) => (
     firedNotifactionId => {
       if(notifactionId !== firedNotifactionId) {return}
-      let win = window.open(url, '_blank')
-      win.focus()
+      browser.tabs.create({
+        active: true,
+        url: url
+      })
       chrome.notifications.clear(notifactionId)
     }
   )
